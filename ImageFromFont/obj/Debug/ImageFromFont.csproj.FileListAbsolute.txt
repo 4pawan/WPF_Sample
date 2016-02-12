@@ -1,0 +1,5 @@
+C:\Project\Temp\WPF\Demo1\Demo1\ImageFromFont\bin\Debug\ImageFromFont.dll
+C:\Project\Temp\WPF\Demo1\Demo1\ImageFromFont\bin\Debug\ImageFromFont.pdb
+C:\Project\Temp\WPF\Demo1\Demo1\ImageFromFont\obj\Debug\ImageFromFont.dll
+C:\Project\Temp\WPF\Demo1\Demo1\ImageFromFont\obj\Debug\ImageFromFont.pdb
+C:\Project\Temp\WPF\Demo1\Demo1\ImageFromFont\obj\Debug\ImageFromFont.csprojResolveAssemblyReference.cache
