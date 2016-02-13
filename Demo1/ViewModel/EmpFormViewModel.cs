@@ -18,6 +18,7 @@ namespace Demo1.ViewModel
         private string _name;
         private int _age;
         private string _salary;
+        public ICommand NavigateToForm { get; set; }
 
         public string Salary
         {
@@ -39,7 +40,7 @@ namespace Demo1.ViewModel
 
                 var age = this.Age;
                 var name = this.Name;
-                var model = new EmpModel
+                var model = new EmpFormViewModel
                 {
                     Name = this.Name,
                     Age = this.Age
@@ -47,6 +48,13 @@ namespace Demo1.ViewModel
                 Service.EmpService.AddEmp(model);
 
             }, () => true);
+
+
+            NavigateToForm = new RelayCommand<EmpViewModel>(model =>
+            {
+                model.IsImportDataVisible = false;
+                model.IsSearchVisible = true;
+            }, model => true);
         }
 
         [StringLength(5, ErrorMessageResourceType = typeof(Resources), ErrorMessageResourceName = "EmpFormViewModel_Name_Name_cant_be_more_than_5_char")]

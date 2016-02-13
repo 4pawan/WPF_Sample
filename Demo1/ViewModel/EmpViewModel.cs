@@ -15,11 +15,11 @@ namespace Demo1.ViewModel
 {
     public class EmpViewModel : ViewModelBase
     {
-        private ObservableCollection<EmpModel> empList;
+        private ObservableCollection<EmpFormViewModel> empList;
         public ICommand ImportCommand { get; set; }
 
         private ICommand _searchCommand;
-        public ICommand NavigateToForm { get; set; }
+        
         public ICommand SearchCommand
         {
             get { return _searchCommand; }
@@ -51,7 +51,7 @@ namespace Demo1.ViewModel
             }
         }
 
-        public ObservableCollection<EmpModel> EmpList
+        public ObservableCollection<EmpFormViewModel> EmpList
         {
             get { return empList; }
             set
@@ -79,11 +79,7 @@ namespace Demo1.ViewModel
                 IsSearchVisible = true;
             }, () => true);
 
-            NavigateToForm = new RelayCommand(() =>
-            {
-                IsImportDataVisible = false;
-                IsSearchVisible = true;
-            }, () => true);
+           
 
             IsImportDataVisible = true;
         }

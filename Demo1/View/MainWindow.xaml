@@ -10,7 +10,8 @@
         Height="350" 
         Width="525"
         WindowState="Maximized"  WindowStartupLocation="CenterScreen"
-        Title="Sample App" Icon="/Demo1;component/Resources/mickey-mouse-icon.png">
+        Title="Sample App" Icon="/Demo1;component/Resources/mickey-mouse-icon.png"
+    Name="mainWindow">
 
     <Window.Resources>
         <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
@@ -25,7 +26,7 @@
             <StackPanel>
                 <TextBlock Text="{Binding Name}" />
                 <TextBlock Text="{Binding Age}" />
-                <Button Content="Edit" Command="{Binding NavigateToForm }"/>
+                <Button Content="Edit" Command="{Binding NavigateToForm }" CommandParameter="{Binding DataContext, ElementName=mainWindow}"/>
             </StackPanel>
         </DataTemplate>
 
