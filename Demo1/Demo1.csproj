@@ -97,6 +97,10 @@
     <Compile Include="Common\ValidationBase.cs" />
     <Compile Include="Service\EmpService.cs" />
     <Compile Include="ViewModel\EmpFormViewModel.cs" />
+    <Compile Include="ViewModel\PaginationViewModel.cs" />
+    <Compile Include="View\UserControl\PaginationElements.xaml.cs">
+      <DependentUpon>PaginationElements.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\UserControl\_EmpForm.xaml.cs">
       <DependentUpon>_EmpForm.xaml</DependentUpon>
     </Compile>
@@ -122,6 +126,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="View\UserControl\PaginationElements.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="View\UserControl\_EmpForm.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

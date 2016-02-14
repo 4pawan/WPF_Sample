@@ -18,6 +18,20 @@ namespace Demo1.ViewModel
         private string _name;
         private int _age;
         private string _salary;
+
+        private int _id;
+
+        public int Id
+        {
+            get { return _id; }
+            set
+            {
+                _id = value;
+                OnPropertyChanged();
+            }
+        }
+
+
         public ICommand NavigateToForm { get; set; }
 
         public string Salary
