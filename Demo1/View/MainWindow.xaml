@@ -70,15 +70,34 @@
             </RibbonTab>
         </Ribbon>
         <Grid Grid.Row="1">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition  Width="*" />
-                <ColumnDefinition  Width="auto" />
-            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition  Height="*" />
+                <RowDefinition  Height="45" />
+            </Grid.RowDefinitions>
             <ListView Visibility="{Binding IsImportDataVisible, Converter={StaticResource BooleanToVisibilityConverter}}"  Background="Yellow"
-				ItemTemplate ="{StaticResource Templte}" ItemsSource="{Binding EmpList}"/>
-            <uc:EmpForm Grid.Column="1" />
+			 ItemsSource="{Binding EmpList}">
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn  Header="Id" Width="40" DisplayMemberBinding="{Binding Id}" />
+                        <GridViewColumn Header="Name" Width="150" DisplayMemberBinding="{Binding Name}" />
+                        <GridViewColumn Header="Surname" Width="150" DisplayMemberBinding="{Binding Age}" />
+                        <GridViewColumn Header="Edit" Width="150" >
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Button Content="Edit" Command="{Binding NavigateToForm}" CommandParameter="{Binding DataContext, ElementName=mainWindow}"/>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+
+
+                        </GridViewColumn>
+                    </GridView>
+                </ListView.View>
+            </ListView>
+            <uc:PaginationElements Grid.Row="1" />
         </Grid>
 
-        <Grid Visibility="{Binding IsSearchVisible, Converter={StaticResource BooleanToVisibilityConverter}}" Grid.Row="1" Background="Green"/>
+        <Grid Visibility="{Binding IsSearchVisible, Converter={StaticResource BooleanToVisibilityConverter}}" Grid.Row="1" Background="Green">
+            <uc:EmpForm/>
+        </Grid>
     </Grid>
 </Window>

@@ -114,36 +114,19 @@ namespace Demo1.ViewModel
 
             ViewList = new CollectionViewSource();
             ViewList.Source = PeopleList;
-            ViewList.Filter += new FilterEventHandler(view_Filter);
+            ViewList.Filter += view_Filter;
 
             CurrentPageIndex = 0;
             itemcount = _empList.Count;
             CalculateTotalPages();
 
+            NextCommand = new RelayCommand(ShowNextPage, () => TotalPages - 1 > CurrentPageIndex);
 
-            NextCommand = new RelayCommand<EmpViewModel>(model =>
-            {
-                //model.IsImportDataVisible = false;
-                //model.IsSearchVisible = true;
-            }, model => true);
+            PreviousCommand = new RelayCommand(ShowPreviousPage, () => CurrentPageIndex != 0);
 
-            PreviousCommand = new RelayCommand<EmpViewModel>(model =>
-            {
-                //model.IsImportDataVisible = false;
-                //model.IsSearchVisible = true;
-            }, model => true);
+            FirstCommand = new RelayCommand(ShowFirstPage, () => CurrentPageIndex != 0);
 
-            FirstCommand = new RelayCommand<EmpViewModel>(model =>
-            {
-                //model.IsImportDataVisible = false;
-                //model.IsSearchVisible = true;
-            }, model => true);
-
-            LastCommand = new RelayCommand<EmpViewModel>(model =>
-            {
-                //model.IsImportDataVisible = false;
-                //model.IsSearchVisible = true;
-            }, model => true);
+            LastCommand = new RelayCommand(ShowLastPage, () => CurrentPage != TotalPages);
         }
 
         private void populateList()

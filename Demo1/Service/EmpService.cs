@@ -14,13 +14,16 @@ namespace Demo1.Service
         private static readonly ObservableCollection<EmpFormViewModel> empList;
         static EmpService()
         {
-            empList = new ObservableCollection<EmpFormViewModel>
+            empList = new ObservableCollection<EmpFormViewModel>();
+            for (int i = 0; i < 1000; i++)
             {
-                new EmpFormViewModel { Name="AAA" ,Age=10 },
-                new EmpFormViewModel { Name="BBB" ,Age=30 },
-                new EmpFormViewModel { Name="CCC" ,Age=50 },
-                new EmpFormViewModel { Name="DDD" ,Age=20 }
-            };
+                empList.Add(new EmpFormViewModel
+                {
+                    Id = i + 1,
+                    Name = "AAA" + (i + 1),
+                    Age = i + 1
+                });
+            }
         }
 
 
@@ -36,7 +39,7 @@ namespace Demo1.Service
 
         public static void EditEmp(EmpFormViewModel emp)
         {
-           
+
         }
         public static void DeleteEmp(EmpFormViewModel emp)
         {
