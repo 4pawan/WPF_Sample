@@ -64,3 +64,4 @@ C:\Project\TEMP\WPF\WPF_Sample\WPF_Sample\Demo1\obj\Debug\View\UserControl\_EmpF
 C:\Project\TEMP\WPF\WPF_Sample\WPF_Sample\Demo1\obj\Debug\Demo1.g.resources
 C:\Project\TEMP\WPF\WPF_Sample\WPF_Sample\Demo1\obj\Debug\Demo1.Properties.Resources.resources
 C:\Project\TEMP\WPF\WPF_Sample\WPF_Sample\Demo1\obj\Debug\Demo1.csproj.GenerateResource.Cache
+C:\Project\TEMP\WPF\WPF_Sample\WPF_Sample\Demo1\obj\Debug\Dictionary.baml

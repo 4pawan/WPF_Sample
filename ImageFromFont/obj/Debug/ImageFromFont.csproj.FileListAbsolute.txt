@@ -5,6 +5,5 @@ C:\Project\Temp\WPF\Demo1\Demo1\ImageFromFont\obj\Debug\ImageFromFont.pdb
 C:\Project\Temp\WPF\Demo1\Demo1\ImageFromFont\obj\Debug\ImageFromFont.csprojResolveAssemblyReference.cache
 C:\Project\TEMP\WPF\WPF_Sample\WPF_Sample\ImageFromFont\bin\Debug\ImageFromFont.dll
 C:\Project\TEMP\WPF\WPF_Sample\WPF_Sample\ImageFromFont\bin\Debug\ImageFromFont.pdb
-C:\Project\TEMP\WPF\WPF_Sample\WPF_Sample\ImageFromFont\obj\Debug\ImageFromFont.csprojResolveAssemblyReference.cache
 C:\Project\TEMP\WPF\WPF_Sample\WPF_Sample\ImageFromFont\obj\Debug\ImageFromFont.dll
 C:\Project\TEMP\WPF\WPF_Sample\WPF_Sample\ImageFromFont\obj\Debug\ImageFromFont.pdb

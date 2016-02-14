@@ -92,6 +92,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Common\BooleanToColorConverter.cs" />
     <Compile Include="Common\StringToIntValidationRule.cs" />
     <Compile Include="Common\ValidationBase.cs" />
     <Compile Include="Service\EmpService.cs" />
@@ -99,6 +100,10 @@
     <Compile Include="View\UserControl\_EmpForm.xaml.cs">
       <DependentUpon>_EmpForm.xaml</DependentUpon>
     </Compile>
+    <Page Include="Dictionary.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

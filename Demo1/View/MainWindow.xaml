@@ -4,19 +4,25 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:imgFrmFont="clr-namespace:ImageFromFont;assembly=ImageFromFont"
-        xmlns:viewModel="clr-namespace:Demo1.ViewModel" x:Class="Demo1.View.MainWindow"
+        xmlns:viewModel="clr-namespace:Demo1.ViewModel"
         xmlns:uc="clr-namespace:Demo1.View.UserControl"
+        xmlns:Common="clr-namespace:Demo1.Common" x:Class="Demo1.View.MainWindow"
         mc:Ignorable="d"
         Height="350" 
         Width="525"
         WindowState="Maximized"  WindowStartupLocation="CenterScreen"
         Title="Sample App" Icon="/Demo1;component/Resources/mickey-mouse-icon.png"
-    Name="mainWindow">
+    x:Name="mainWindow">
 
     <Window.Resources>
+        <Common:BooleanToColorConverter x:Key="BooleanToColorConverter"/>
+        <!--<ResourceDictionary x:Key="ds">
+            <ResourceDictionary.MergedDictionaries>
+               <ResourceDictionary Source="/Demo1;component/Dictionary.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>-->
         <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
         <FontFamily x:Key="FontAwesome">/Resources/fontawesome-webfont.ttf#FontAwesome</FontFamily>
-
         <LinearGradientBrush x:Key="LinearGradientBrushTest" StartPoint="0,0" EndPoint="1,1" >
             <GradientStop Color="Yellow" Offset="0.2"/>
             <GradientStop Color="Orange" Offset="0.5"/>
@@ -26,7 +32,7 @@
             <StackPanel>
                 <TextBlock Text="{Binding Name}" />
                 <TextBlock Text="{Binding Age}" />
-                <Button Content="Edit" Command="{Binding NavigateToForm }" CommandParameter="{Binding DataContext, ElementName=mainWindow}"/>
+                <Button Content="Edit" Command="{Binding NavigateToForm}" CommandParameter="{Binding DataContext, ElementName=mainWindow}"/>
             </StackPanel>
         </DataTemplate>
 
@@ -51,14 +57,14 @@
                 </RibbonApplicationMenu>
             </Ribbon.ApplicationMenu>
 
-            <RibbonTab Header="Main">
+            <RibbonTab IsSelected="True" Header="Main">
 
                 <RibbonGroup Header="Actions">
-                    <RibbonButton Label="Import data" LargeImageSource="{imgFrmFont:ImageFromFont Brush=Brown, FontFamily=/Demo1;component/Resources/#FontAwesome, Text=&#xF01A;}" Command="{ Binding ImportCommand}" />
+                    <RibbonButton Label="Import data" Background="{Binding IsImportDataVisible, Converter={StaticResource BooleanToColorConverter}}" LargeImageSource="{imgFrmFont:ImageFromFont Brush=Brown, FontFamily=/Demo1;component/Resources/#FontAwesome, Text=&#xF01A;}" Command="{Binding ImportCommand}" />
                 </RibbonGroup>
                 <RibbonGroup Header="Tools">
-                    <RibbonButton Label="Search" LargeImageSource="{imgFrmFont:ImageFromFont Brush={StaticResource LinearGradientBrushTest}, FontFamily=/Demo1;component/Resources/#FontAwesome, Text=&#xF002;}" Command="{Binding SearchCommand}" />
-                    <RibbonButton Label="Puzzle" LargeImageSource="{imgFrmFont:ImageFromFont Brush=CornflowerBlue, FontFamily=/Demo1;component/Resources/#FontAwesome, Style=Italic, Stretch=Condensed, Text=&#xF12E;, Weight=Bold}" />
+                    <RibbonButton Label="Search" Background="{Binding IsSearchVisible, Converter={StaticResource BooleanToColorConverter}}" LargeImageSource="{imgFrmFont:ImageFromFont Brush={StaticResource LinearGradientBrushTest}, FontFamily=/Demo1;component/Resources/#FontAwesome, Text=&#xF002;}" Command="{Binding SearchCommand}" />
+                    <RibbonButton Label="Puzzle" Background="{Binding IsSearchVisible, Converter={StaticResource BooleanToColorConverter}}"  LargeImageSource="{imgFrmFont:ImageFromFont Brush=CornflowerBlue, FontFamily=/Demo1;component/Resources/#FontAwesome, Style=Italic, Stretch=Condensed, Text=&#xF12E;, Weight=Bold}" />
                     <RibbonCheckBox SmallImageSource="{imgFrmFont:ImageFromFont Brush=Green, FontFamily=/Demo1;component/Resources/#FontAwesome, Text=&#xF05B;}" Label="A checkbox"/>
                 </RibbonGroup>
             </RibbonTab>
@@ -68,14 +74,11 @@
                 <ColumnDefinition  Width="*" />
                 <ColumnDefinition  Width="auto" />
             </Grid.ColumnDefinitions>
-            <ListView Visibility="{Binding IsImportDataVisible , Converter={StaticResource BooleanToVisibilityConverter}}"  Background="Yellow"
-            ItemTemplate ="{StaticResource Templte}" ItemsSource="{Binding  EmpList}">
-            </ListView>
+            <ListView Visibility="{Binding IsImportDataVisible, Converter={StaticResource BooleanToVisibilityConverter}}"  Background="Yellow"
+				ItemTemplate ="{StaticResource Templte}" ItemsSource="{Binding EmpList}"/>
             <uc:EmpForm Grid.Column="1" />
         </Grid>
 
-        <Grid Visibility="{Binding IsSearchVisible, Converter={StaticResource BooleanToVisibilityConverter}}" Grid.Row="1" Background="Green">
-
-        </Grid>
+        <Grid Visibility="{Binding IsSearchVisible, Converter={StaticResource BooleanToVisibilityConverter}}" Grid.Row="1" Background="Green"/>
     </Grid>
 </Window>
