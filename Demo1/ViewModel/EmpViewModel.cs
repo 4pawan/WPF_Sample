@@ -18,8 +18,19 @@ namespace Demo1.ViewModel
         private ObservableCollection<EmpFormViewModel> empList;
         public ICommand ImportCommand { get; set; }
 
+        public PaginationViewModel Paging
+        {
+            get { return _paging; }
+            set
+            {
+                _paging = value;
+                OnPropertyChanged();
+            }
+        }
+
+
         private ICommand _searchCommand;
-        
+
         public ICommand SearchCommand
         {
             get { return _searchCommand; }
@@ -40,6 +51,7 @@ namespace Demo1.ViewModel
 
 
         private bool _isSearchVissible;
+        private PaginationViewModel _paging;
 
         public bool IsSearchVisible
         {
@@ -67,6 +79,10 @@ namespace Demo1.ViewModel
 
             EmpList = EmpService.GetEmpList();
 
+            Paging = new PaginationViewModel(empList);
+
+
+
             ImportCommand = new RelayCommand(() =>
             {
                 IsImportDataVisible = true;
@@ -78,8 +94,6 @@ namespace Demo1.ViewModel
                 IsImportDataVisible = false;
                 IsSearchVisible = true;
             }, () => true);
-
-           
 
             IsImportDataVisible = true;
         }

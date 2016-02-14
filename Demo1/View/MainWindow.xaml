@@ -87,8 +87,6 @@
                                     <Button Content="Edit" Command="{Binding NavigateToForm}" CommandParameter="{Binding DataContext, ElementName=mainWindow}"/>
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
-
-
                         </GridViewColumn>
                     </GridView>
                 </ListView.View>

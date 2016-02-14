@@ -108,12 +108,18 @@ namespace Demo1.ViewModel
         }
         #endregion
 
+
         public PaginationViewModel()
         {
-            populateList();
+            
+        }
 
+
+
+        public PaginationViewModel(dynamic model)
+        {               
             ViewList = new CollectionViewSource();
-            ViewList.Source = PeopleList;
+            ViewList.Source = model;
             ViewList.Filter += view_Filter;
 
             CurrentPageIndex = 0;
@@ -129,12 +135,5 @@ namespace Demo1.ViewModel
             LastCommand = new RelayCommand(ShowLastPage, () => CurrentPage != TotalPages);
         }
 
-        private void populateList()
-        {
-            //for (int i = 0; i < 100; i++)
-            //{
-            //    peopleList.Add(new Person(i, "Jack", "Black"));
-            //}
-        }
     }
 }
