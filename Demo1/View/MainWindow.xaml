@@ -75,7 +75,7 @@
                 <RowDefinition  Height="45" />
             </Grid.RowDefinitions>
             <ListView Visibility="{Binding IsImportDataVisible, Converter={StaticResource BooleanToVisibilityConverter}}"  Background="Yellow"
-			 ItemsSource="{Binding EmpList}">
+			 ItemsSource="{Binding Paging.ViewList.View}">
                 <ListView.View>
                     <GridView>
                         <GridViewColumn  Header="Id" Width="40" DisplayMemberBinding="{Binding Id}" />

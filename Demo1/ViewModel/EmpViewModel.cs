@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Data;
 using System.Windows.Input;
 using Demo1.Common;
 using Demo1.Model;
@@ -16,6 +17,7 @@ namespace Demo1.ViewModel
     public class EmpViewModel : ViewModelBase
     {
         private ObservableCollection<EmpFormViewModel> empList;
+        public CollectionViewSource ViewList { get; set; }
         public ICommand ImportCommand { get; set; }
 
         public PaginationViewModel Paging
@@ -79,9 +81,12 @@ namespace Demo1.ViewModel
 
             EmpList = EmpService.GetEmpList();
 
-            Paging = new PaginationViewModel(empList);
-
-
+            ViewList = new CollectionViewSource();
+            ViewList.Source = EmpList;
+            //ViewList.Filter += new FilterEventHandler(view_Filter);
+            Paging = new PaginationViewModel();
+            Paging.PeopleList = empList;
+            Paging.ViewList = ViewList;
 
             ImportCommand = new RelayCommand(() =>
             {

@@ -21,7 +21,7 @@ namespace Demo1.ViewModel
         #endregion
 
         #region Fields And Properties
-        private int itemPerPage = 15;
+        private int itemPerPage = 10;
         private int itemcount;
         private int _currentPageIndex;
         public int CurrentPageIndex
@@ -49,12 +49,31 @@ namespace Demo1.ViewModel
             }
         }
 
-        public CollectionViewSource ViewList { get; set; }
-        private ObservableCollection<EmpFormViewModel> _empList = new ObservableCollection<EmpFormViewModel>();
-        public ReadOnlyObservableCollection<EmpFormViewModel> PeopleList
+        public CollectionViewSource ViewList
         {
-            get { return new ReadOnlyObservableCollection<EmpFormViewModel>(_empList); }
+            get { return _viewList; }
+            set
+            {
+                _viewList = value;
+                OnPropertyChanged();
+            }
         }
+
+        private ObservableCollection<EmpFormViewModel> _empList;
+        private CollectionViewSource _viewList = new CollectionViewSource();
+
+        public ObservableCollection<EmpFormViewModel> PeopleList
+        {
+            get { return new ObservableCollection<EmpFormViewModel>(_empList); }
+            set
+            {
+                _empList = value;
+                OnPropertyChanged();
+                itemcount = _empList.Count;
+                CalculateTotalPages();
+            }
+        }
+
         #endregion
 
         #region Pagination Methods
@@ -82,7 +101,8 @@ namespace Demo1.ViewModel
             ViewList.View.Refresh();
         }
 
-        void view_Filter(object sender, FilterEventArgs e)
+
+        private void ViewList_Filter(object sender, FilterEventArgs e)
         {
             int index = ((EmpFormViewModel)e.Item).Id - 1;
             if (index >= itemPerPage * CurrentPageIndex && index < itemPerPage * (CurrentPageIndex + 1))
@@ -94,7 +114,7 @@ namespace Demo1.ViewModel
                 e.Accepted = false;
             }
         }
-
+         
         private void CalculateTotalPages()
         {
             if (itemcount % itemPerPage == 0)
@@ -109,22 +129,18 @@ namespace Demo1.ViewModel
         #endregion
 
 
+
+
         public PaginationViewModel()
         {
-            
-        }
+            //ViewList = new CollectionViewSource();
+            //ViewList.Source = PeopleList;
+            //itemcount = _empList.Count;
 
+            ViewList.Filter += ViewList_Filter;
 
-
-        public PaginationViewModel(dynamic model)
-        {               
-            ViewList = new CollectionViewSource();
-            ViewList.Source = model;
-            ViewList.Filter += view_Filter;
 
             CurrentPageIndex = 0;
-            itemcount = _empList.Count;
-            CalculateTotalPages();
 
             NextCommand = new RelayCommand(ShowNextPage, () => TotalPages - 1 > CurrentPageIndex);
 
@@ -135,5 +151,6 @@ namespace Demo1.ViewModel
             LastCommand = new RelayCommand(ShowLastPage, () => CurrentPage != TotalPages);
         }
 
+      
     }
 }

@@ -14,10 +14,10 @@
             <Setter Property="VerticalAlignment" Value="Center" />
         </Style>
     </UserControl.Resources>
-    <UserControl.DataContext>
+    <!--<UserControl.DataContext>
         <ViewModel:PaginationViewModel/>
-    </UserControl.DataContext>
-    <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+    </UserControl.DataContext>-->
+    <StackPanel DataContext="{Binding Paging}" Orientation="Horizontal" HorizontalAlignment="Right">
         <Button Content="First" Command="{Binding FirstCommand}"/>
         <Button Content="Previous" Command="{Binding PreviousCommand}"/>
         <TextBlock Width="auto" Text="{Binding CurrentPage}"/>
