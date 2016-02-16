@@ -14,14 +14,14 @@ namespace Demo1.ViewModel
     public class PaginationViewModel : ViewModelBase
     {
         #region Commands
-        public ICommand PreviousCommand { get; private set; }
-        public ICommand NextCommand { get; private set; }
-        public ICommand FirstCommand { get; private set; }
-        public ICommand LastCommand { get; private set; }
+        public ICommand PreviousCommand { get;  set; }
+        public ICommand NextCommand { get;  set; }
+        public ICommand FirstCommand { get;  set; }
+        public ICommand LastCommand { get;  set; }
         #endregion
 
         #region Fields And Properties
-        private int itemPerPage = 10;
+        public int itemPerPage = 10;
         private int itemcount;
         private int _currentPageIndex;
         public int CurrentPageIndex
@@ -30,6 +30,7 @@ namespace Demo1.ViewModel
             set
             {
                 _currentPageIndex = value;
+                OnPropertyChanged();
                 OnPropertyChanged("CurrentPage");
             }
         }
@@ -104,17 +105,9 @@ namespace Demo1.ViewModel
 
         private void ViewList_Filter(object sender, FilterEventArgs e)
         {
-            int index = ((EmpFormViewModel)e.Item).Id - 1;
-            if (index >= itemPerPage * CurrentPageIndex && index < itemPerPage * (CurrentPageIndex + 1))
-            {
-                e.Accepted = true;
-            }
-            else
-            {
-                e.Accepted = false;
-            }
+
         }
-         
+
         private void CalculateTotalPages()
         {
             if (itemcount % itemPerPage == 0)
@@ -137,8 +130,7 @@ namespace Demo1.ViewModel
             //ViewList.Source = PeopleList;
             //itemcount = _empList.Count;
 
-            ViewList.Filter += ViewList_Filter;
-
+            //ViewList.Filter += ViewList_Filter;
 
             CurrentPageIndex = 0;
 
@@ -151,6 +143,6 @@ namespace Demo1.ViewModel
             LastCommand = new RelayCommand(ShowLastPage, () => CurrentPage != TotalPages);
         }
 
-      
+
     }
 }

@@ -83,11 +83,13 @@ namespace Demo1.ViewModel
 
             ViewList = new CollectionViewSource();
             ViewList.Source = EmpList;
+            ViewList.Filter += ViewList_Filter1;
             //ViewList.Filter += new FilterEventHandler(view_Filter);
             Paging = new PaginationViewModel();
             Paging.PeopleList = empList;
             Paging.ViewList = ViewList;
-
+            Paging.ViewList.Filter += ViewList_Filter;
+            
             ImportCommand = new RelayCommand(() =>
             {
                 IsImportDataVisible = true;
@@ -101,6 +103,25 @@ namespace Demo1.ViewModel
             }, () => true);
 
             IsImportDataVisible = true;
+        }
+
+        private void ViewList_Filter1(object sender, FilterEventArgs e)
+        {
+
+        }
+
+        private void ViewList_Filter(object sender, FilterEventArgs e)
+        {
+            int index = ((EmpFormViewModel)e.Item).Id - 1;
+            if (index >= Paging.itemPerPage * Paging.CurrentPageIndex && index < Paging.itemPerPage * (Paging.CurrentPageIndex + 1))
+            {
+                e.Accepted = true;
+            }
+            else
+            {
+                e.Accepted = false;
+            }
+
         }
     }
 }
