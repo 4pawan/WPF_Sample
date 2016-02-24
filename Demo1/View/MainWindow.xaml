@@ -90,8 +90,8 @@
 			 ItemsSource="{Binding Paging.ViewList.View}">
                 <ListView.View>
                     <GridView>
-                        <GridViewColumn  Header="Id" Width="40"  DisplayMemberBinding="{Binding Id}" >
-                           
+                        <GridViewColumn Width="40" DisplayMemberBinding="{Binding Id}">
+                            <GridViewColumnHeader Content="Id" Command="{Binding SortCommand}" CommandParameter="{Binding Id}" />
                         </GridViewColumn>
                         <GridViewColumn Header="Name" Width="150" DisplayMemberBinding="{Binding Name}" />
                         <GridViewColumn Header="Surname" Width="150" DisplayMemberBinding="{Binding Age}" />

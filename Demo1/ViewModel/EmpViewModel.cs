@@ -106,10 +106,10 @@ namespace Demo1.ViewModel
                 IsSearchVisible = true;
             }, () => true);
 
-            SortCommand = new RelayCommand(() =>
+            SortCommand = new RelayCommand<dynamic>(item =>
             {
-                
-            }, () => true);
+                var aa = item;
+            }, item => true);
 
             IsImportDataVisible = true;
         }
