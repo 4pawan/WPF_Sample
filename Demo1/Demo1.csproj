@@ -93,6 +93,10 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Common\BooleanToColorConverter.cs" />
+    <Compile Include="Common\FirstPageCommand.cs" />
+    <Compile Include="Common\LastPageCommand.cs" />
+    <Compile Include="Common\NextPageCommand.cs" />
+    <Compile Include="Common\PreviousPageCommand.cs" />
     <Compile Include="Common\StringToIntValidationRule.cs" />
     <Compile Include="Common\ValidationBase.cs" />
     <Compile Include="Service\EmpService.cs" />

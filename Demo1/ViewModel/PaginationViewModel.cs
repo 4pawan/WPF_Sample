@@ -14,16 +14,21 @@ namespace Demo1.ViewModel
     public class PaginationViewModel : ViewModelBase
     {
         #region Commands
-        public ICommand PreviousCommand { get;  set; }
-        public ICommand NextCommand { get;  set; }
-        public ICommand FirstCommand { get;  set; }
-        public ICommand LastCommand { get;  set; }
+        public ICommand PreviousCommand { get; set; }
+        public ICommand NextCommand { get; set; }
+        public ICommand FirstCommand { get; set; }
+        public ICommand LastCommand { get; set; }
+
         #endregion
 
         #region Fields And Properties
         public int itemPerPage = 10;
         private int itemcount;
         private int _currentPageIndex;
+
+
+
+
         public int CurrentPageIndex
         {
             get { return _currentPageIndex; }
@@ -62,6 +67,7 @@ namespace Demo1.ViewModel
 
         private ObservableCollection<EmpFormViewModel> _empList;
         private CollectionViewSource _viewList = new CollectionViewSource();
+
 
         public ObservableCollection<EmpFormViewModel> PeopleList
         {
@@ -102,12 +108,6 @@ namespace Demo1.ViewModel
             ViewList.View.Refresh();
         }
 
-
-        private void ViewList_Filter(object sender, FilterEventArgs e)
-        {
-
-        }
-
         private void CalculateTotalPages()
         {
             if (itemcount % itemPerPage == 0)
@@ -126,23 +126,12 @@ namespace Demo1.ViewModel
 
         public PaginationViewModel()
         {
-            //ViewList = new CollectionViewSource();
-            //ViewList.Source = PeopleList;
-            //itemcount = _empList.Count;
-
-            //ViewList.Filter += ViewList_Filter;
-
             CurrentPageIndex = 0;
 
-            NextCommand = new RelayCommand(ShowNextPage, () => TotalPages - 1 > CurrentPageIndex);
-
-            PreviousCommand = new RelayCommand(ShowPreviousPage, () => CurrentPageIndex != 0);
-
-            FirstCommand = new RelayCommand(ShowFirstPage, () => CurrentPageIndex != 0);
-
-            LastCommand = new RelayCommand(ShowLastPage, () => CurrentPage != TotalPages);
+            NextCommand = new NextPageCommand(this);
+            PreviousCommand = new PreviousPageCommand(this);
+            FirstCommand = new FirstPageCommand(this);
+            LastCommand = new LastPageCommand(this);
         }
-
-
     }
 }
