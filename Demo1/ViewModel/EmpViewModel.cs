@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -19,6 +20,8 @@ namespace Demo1.ViewModel
         private ObservableCollection<EmpFormViewModel> empList;
         public CollectionViewSource ViewList { get; set; }
         public ICommand ImportCommand { get; set; }
+        public ICommand SortCommand { get; set; }
+
 
         public PaginationViewModel Paging
         {
@@ -83,13 +86,14 @@ namespace Demo1.ViewModel
 
             ViewList = new CollectionViewSource();
             ViewList.Source = EmpList;
-            ViewList.Filter += ViewList_Filter1;
-            //ViewList.Filter += new FilterEventHandler(view_Filter);
-            Paging = new PaginationViewModel();
-            Paging.PeopleList = empList;
-            Paging.ViewList = ViewList;
+            Paging = new PaginationViewModel
+            {
+                PeopleList = empList,
+                ViewList = ViewList
+            };
             Paging.ViewList.Filter += ViewList_Filter;
-            
+            Paging.ViewList.SortDescriptions.Add(new SortDescription("Name", ListSortDirection.Descending));
+
             ImportCommand = new RelayCommand(() =>
             {
                 IsImportDataVisible = true;
@@ -102,13 +106,14 @@ namespace Demo1.ViewModel
                 IsSearchVisible = true;
             }, () => true);
 
+            SortCommand = new RelayCommand(() =>
+            {
+                
+            }, () => true);
+
             IsImportDataVisible = true;
         }
 
-        private void ViewList_Filter1(object sender, FilterEventArgs e)
-        {
-
-        }
 
         private void ViewList_Filter(object sender, FilterEventArgs e)
         {

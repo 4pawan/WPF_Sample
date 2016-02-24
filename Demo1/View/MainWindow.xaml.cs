@@ -1,4 +1,5 @@
 ﻿using System.Windows;
+using System.Windows.Controls;
 
 namespace Demo1.View
 {
@@ -10,6 +11,11 @@ namespace Demo1.View
         public MainWindow()
         {
             InitializeComponent();
+        }
+
+        private void LstVw_Click(object sender, RoutedEventArgs e)
+        {
+            GridViewColumnHeader column = e.OriginalSource as GridViewColumnHeader;
         }
     }
 }

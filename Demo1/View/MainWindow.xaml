@@ -6,7 +6,9 @@
         xmlns:imgFrmFont="clr-namespace:ImageFromFont;assembly=ImageFromFont"
         xmlns:viewModel="clr-namespace:Demo1.ViewModel"
         xmlns:uc="clr-namespace:Demo1.View.UserControl"
-        xmlns:Common="clr-namespace:Demo1.Common" x:Class="Demo1.View.MainWindow"
+        xmlns:Common="clr-namespace:Demo1.Common"
+        xmlns:componentModel="clr-namespace:System.ComponentModel;assembly=WindowsBase"
+        x:Class="Demo1.View.MainWindow"
         mc:Ignorable="d"
         Height="350" 
         Width="525"
@@ -21,6 +23,16 @@
                <ResourceDictionary Source="/Demo1;component/Dictionary.xaml"/>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>-->
+
+
+        <CollectionViewSource x:Key="lst" 
+                      Source="{Binding ElementName=lstLevel, 
+                                       Path=SelectedItem.Players}">
+            <CollectionViewSource.SortDescriptions>
+                <componentModel:SortDescription PropertyName="Name" />
+            </CollectionViewSource.SortDescriptions>
+        </CollectionViewSource>
+
         <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
         <FontFamily x:Key="FontAwesome">/Resources/fontawesome-webfont.ttf#FontAwesome</FontFamily>
         <LinearGradientBrush x:Key="LinearGradientBrushTest" StartPoint="0,0" EndPoint="1,1" >
@@ -74,11 +86,13 @@
                 <RowDefinition  Height="*" />
                 <RowDefinition  Height="45" />
             </Grid.RowDefinitions>
-            <ListView Visibility="{Binding IsImportDataVisible, Converter={StaticResource BooleanToVisibilityConverter}}"  Background="Yellow"
+            <ListView  Name="LstVw" Visibility="{Binding IsImportDataVisible, Converter={StaticResource BooleanToVisibilityConverter}}"  Background="Yellow"
 			 ItemsSource="{Binding Paging.ViewList.View}">
                 <ListView.View>
                     <GridView>
-                        <GridViewColumn  Header="Id" Width="40" DisplayMemberBinding="{Binding Id}" />
+                        <GridViewColumn  Header="Id" Width="40"  DisplayMemberBinding="{Binding Id}" >
+                           
+                        </GridViewColumn>
                         <GridViewColumn Header="Name" Width="150" DisplayMemberBinding="{Binding Name}" />
                         <GridViewColumn Header="Surname" Width="150" DisplayMemberBinding="{Binding Age}" />
                         <GridViewColumn Header="Edit" Width="150" >

@@ -1,22 +1,28 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Input;
 
 namespace Demo1.Common
 {
     public class CommandBase : ICommand
     {
-        public bool CanExecute(object parameter)
+        private readonly Action<object> _Execute;
+        private readonly Func<object, bool> _CanExecute;
+
+        public CommandBase(Action<object> execute)
+            : this(execute, null)
         {
-            return true;
+
         }
 
-        public void Execute(object parameter)
+        public CommandBase(Action<object> execute, Func<object, bool> canExecute)
         {
-            throw new NotImplementedException();
+            if (execute == null)
+            {
+                throw new ArgumentNullException("execute", "Execute cannot be null.");
+            }
+
+            _Execute = execute;
+            _CanExecute = canExecute;
         }
 
         public event EventHandler CanExecuteChanged
@@ -25,7 +31,20 @@ namespace Demo1.Common
             remove { CommandManager.RequerySuggested -= value; }
         }
 
-        //public event EventHandler CanExecuteChanged;
+        public void Execute(object parameter)
+        {
+            _Execute(parameter);
+        }
+
+        public bool CanExecute(object parameter)
+        {
+            if (_CanExecute == null)
+            {
+                return true;
+            }
+
+            return _CanExecute(parameter);
+        }
     }
 }
 

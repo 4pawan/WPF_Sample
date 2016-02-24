@@ -11,6 +11,7 @@ using Demo1.Model;
 using Demo1.Properties;
 using GalaSoft.MvvmLight.Command;
 
+
 namespace Demo1.ViewModel
 {
     public class EmpFormViewModel : ViewModelBase, IDataErrorInfo
