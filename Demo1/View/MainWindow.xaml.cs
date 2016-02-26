@@ -19,9 +19,6 @@ namespace Demo1.View
 
         }
 
-
-
-
         public EmpFormViewModel SelectedEmp
         {
             get { return (EmpFormViewModel)GetValue(SelectedEmpProperty); }
@@ -30,10 +27,22 @@ namespace Demo1.View
 
         // Using a DependencyProperty as the backing store for SelectedEmp.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty SelectedEmpProperty =
-            DependencyProperty.Register("SelectedEmp", typeof(EmpFormViewModel), typeof(MainWindow), new PropertyMetadata(null));
+            DependencyProperty.Register("SelectedEmp", typeof(EmpFormViewModel), typeof(MainWindow), new PropertyMetadata(OnSelectedEmpChanged));
 
 
 
+        private static void OnSelectedEmpChanged(DependencyObject dependencyObject, DependencyPropertyChangedEventArgs e)
+        {
+            MainWindow mainWindow = dependencyObject as MainWindow;
+            EmpFormViewModel oldval = (EmpFormViewModel)e.OldValue;
+            EmpFormViewModel newval = (EmpFormViewModel)e.NewValue;
+
+            if (mainWindow != null)
+            {
+                //mainWindow.txtBlock.Background = Brushes.Green;
+            }
+
+        }
 
 
     }
