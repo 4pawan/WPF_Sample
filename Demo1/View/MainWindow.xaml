@@ -34,6 +34,7 @@
         </CollectionViewSource>
 
         <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
+        <Common:EditEmpConverter x:Key="EditEmpConverter"/>
         <FontFamily x:Key="FontAwesome">/Resources/fontawesome-webfont.ttf#FontAwesome</FontFamily>
         <LinearGradientBrush x:Key="LinearGradientBrushTest" StartPoint="0,0" EndPoint="1,1" >
             <GradientStop Color="Yellow" Offset="0.2"/>
@@ -87,7 +88,7 @@
                 <RowDefinition  Height="45" />
             </Grid.RowDefinitions>
             <ListView  Name="LstVw" Visibility="{Binding IsImportDataVisible, Converter={StaticResource BooleanToVisibilityConverter}}"  Background="Yellow"
-			 ItemsSource="{Binding Paging.ViewList.View}">
+			 ItemsSource="{Binding Paging.ViewList.View}" SelectionChanged="LstVw_SelectionChanged">
                 <ListView.View>
                     <GridView>
                         <GridViewColumn Width="40" DisplayMemberBinding="{Binding Id}">
@@ -100,7 +101,14 @@
                         <GridViewColumn Header="Edit" Width="150" >
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
-                                    <Button Content="Edit" Command="{Binding NavigateToForm}" CommandParameter="{Binding DataContext, ElementName=mainWindow}"/>
+                                    <Button Content="Edit" Command="{Binding NavigateToForm}">
+                                        <Button.CommandParameter>
+                                            <MultiBinding Converter="{StaticResource EditEmpConverter }">
+                                                <Binding Path="DataContext" ElementName="LstVw"/>
+                                                <Binding Path="Height" ElementName="LstVw"/>
+                                            </MultiBinding>
+                                        </Button.CommandParameter>
+                                    </Button>
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>

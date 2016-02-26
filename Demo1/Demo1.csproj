@@ -94,6 +94,7 @@
     </ApplicationDefinition>
     <Compile Include="Common\BooleanToColorConverter.cs" />
     <Compile Include="Common\CommandBase.cs" />
+    <Compile Include="Common\EditEmpConverter.cs" />
     <Compile Include="Common\FirstPageCommand.cs" />
     <Compile Include="Common\LastPageCommand.cs" />
     <Compile Include="Common\NextPageCommand.cs" />

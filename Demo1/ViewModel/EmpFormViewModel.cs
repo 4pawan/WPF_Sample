@@ -65,8 +65,10 @@ namespace Demo1.ViewModel
             }, () => true);
 
 
-            NavigateToForm = new RelayCommand<EmpViewModel>(model =>
+            NavigateToForm = new RelayCommand<dynamic>(model =>
             {
+                var _model = model;
+
                 model.IsImportDataVisible = false;
                 model.IsSearchVisible = true;
             }, model => true);

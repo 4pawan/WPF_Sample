@@ -13,9 +13,9 @@ namespace Demo1.View
             InitializeComponent();
         }
 
-        private void LstVw_Click(object sender, RoutedEventArgs e)
+        private void LstVw_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            GridViewColumnHeader column = e.OriginalSource as GridViewColumnHeader;
+
         }
     }
 }
