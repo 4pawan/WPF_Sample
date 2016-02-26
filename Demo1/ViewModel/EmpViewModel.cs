@@ -9,6 +9,7 @@ using System.Windows;
 using System.Windows.Data;
 using System.Windows.Input;
 using Demo1.Common;
+using Demo1.Enum;
 using Demo1.Model;
 using Demo1.Service;
 using GalaSoft.MvvmLight.Command;
@@ -21,6 +22,9 @@ namespace Demo1.ViewModel
         public CollectionViewSource ViewList { get; set; }
         public ICommand ImportCommand { get; set; }
         public ICommand SortCommand { get; set; }
+
+        public SortColumnViewModel SortColumn { get; set; }
+
 
 
         public PaginationViewModel Paging
@@ -81,7 +85,7 @@ namespace Demo1.ViewModel
 
         public EmpViewModel()
         {
-
+            SortColumn = new SortColumnViewModel();
             EmpList = EmpService.GetEmpList();
 
             ViewList = new CollectionViewSource();
@@ -92,7 +96,7 @@ namespace Demo1.ViewModel
                 ViewList = ViewList
             };
             Paging.ViewList.Filter += ViewList_Filter;
-            Paging.ViewList.SortDescriptions.Add(new SortDescription("Name", ListSortDirection.Descending));
+
 
             ImportCommand = new RelayCommand(() =>
             {
@@ -108,8 +112,42 @@ namespace Demo1.ViewModel
 
             SortCommand = new RelayCommand<dynamic>(item =>
             {
-                var aa = item;
+                if (string.Equals(item, "Name", StringComparison.InvariantCultureIgnoreCase))
+                {
+                    if (SortColumn.NameSortOrder == SortDir.Descending)
+                    {
+                        Paging.ViewList.SortDescriptions.Clear();
+                        Paging.ViewList.SortDescriptions.Add(new SortDescription("Name", ListSortDirection.Ascending));
+                        SortColumn.NameSortOrder = SortDir.Ascending;
+                    }
+                    else
+                    {
+                        Paging.ViewList.SortDescriptions.Clear();
+                        Paging.ViewList.SortDescriptions.Add(new SortDescription("Name", ListSortDirection.Descending));
+                        SortColumn.NameSortOrder = SortDir.Descending;
+                    }
+                }
+
+                if (string.Equals(item, "Id", StringComparison.InvariantCultureIgnoreCase))
+                {
+                    if (SortColumn.NameSortOrder == SortDir.Descending)
+                    {
+                        Paging.ViewList.SortDescriptions.Clear();
+                        Paging.ViewList.SortDescriptions.Add(new SortDescription("Id", ListSortDirection.Ascending));
+                        SortColumn.NameSortOrder = SortDir.Ascending;
+                    }
+                    else
+                    {
+                        Paging.ViewList.SortDescriptions.Clear();
+                        Paging.ViewList.SortDescriptions.Add(new SortDescription("Id", ListSortDirection.Descending));
+                        SortColumn.NameSortOrder = SortDir.Descending;
+                    }
+                }
+
             }, item => true);
+
+
+
 
             IsImportDataVisible = true;
         }

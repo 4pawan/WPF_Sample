@@ -100,9 +100,11 @@
     <Compile Include="Common\PreviousPageCommand.cs" />
     <Compile Include="Common\StringToIntValidationRule.cs" />
     <Compile Include="Common\ValidationBase.cs" />
+    <Compile Include="Enum\SortDir.cs" />
     <Compile Include="Service\EmpService.cs" />
     <Compile Include="ViewModel\EmpFormViewModel.cs" />
     <Compile Include="ViewModel\PaginationViewModel.cs" />
+    <Compile Include="ViewModel\SortColumnViewModel.cs" />
     <Compile Include="View\UserControl\PaginationElements.xaml.cs">
       <DependentUpon>PaginationElements.xaml</DependentUpon>
     </Compile>
@@ -197,7 +199,9 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Constant\" />
+  </ItemGroup>
   <ItemGroup>
     <Content Include="Assets\font-awesome-4.5.0\css\font-awesome.css" />
     <Content Include="Assets\font-awesome-4.5.0\css\font-awesome.min.css" />

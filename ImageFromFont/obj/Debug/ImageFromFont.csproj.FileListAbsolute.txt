@@ -11,3 +11,4 @@ C:\Project\Temp\WPF\WPF_Sample\ImageFromFont\bin\Debug\ImageFromFont.dll
 C:\Project\Temp\WPF\WPF_Sample\ImageFromFont\bin\Debug\ImageFromFont.pdb
 C:\Project\Temp\WPF\WPF_Sample\ImageFromFont\obj\Debug\ImageFromFont.dll
 C:\Project\Temp\WPF\WPF_Sample\ImageFromFont\obj\Debug\ImageFromFont.pdb
+C:\Project\Temp\WPF\WPF_Sample\ImageFromFont\obj\Debug\ImageFromFont.csprojResolveAssemblyReference.cache
