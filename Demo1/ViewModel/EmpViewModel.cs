@@ -22,9 +22,17 @@ namespace Demo1.ViewModel
         public CollectionViewSource ViewList { get; set; }
         public ICommand ImportCommand { get; set; }
         public ICommand SortCommand { get; set; }
-
         public SortColumnViewModel SortColumn { get; set; }
 
+        public EmpFormViewModel SelectedItem
+        {
+            get { return _selectedItem; }
+            set
+            {
+                _selectedItem = value;
+                OnPropertyChanged();
+            }
+        }
 
 
         public PaginationViewModel Paging
@@ -61,6 +69,7 @@ namespace Demo1.ViewModel
 
         private bool _isSearchVissible;
         private PaginationViewModel _paging;
+        private EmpFormViewModel _selectedItem;
 
         public bool IsSearchVisible
         {

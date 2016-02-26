@@ -87,7 +87,7 @@
                 <RowDefinition  Height="*" />
                 <RowDefinition  Height="45" />
             </Grid.RowDefinitions>
-            <ListView  Name="LstVw" Visibility="{Binding IsImportDataVisible, Converter={StaticResource BooleanToVisibilityConverter}}"  Background="Yellow"
+            <ListView SelectedItem="{Binding SelectedItem, Mode=TwoWay}"  Name="LstVw" Visibility="{Binding IsImportDataVisible, Converter={StaticResource BooleanToVisibilityConverter}}"  Background="Yellow" SelectionMode="Single"
 			 ItemsSource="{Binding Paging.ViewList.View}" SelectionChanged="LstVw_SelectionChanged">
                 <ListView.View>
                     <GridView>
@@ -104,8 +104,8 @@
                                     <Button Content="Edit" Command="{Binding NavigateToForm}">
                                         <Button.CommandParameter>
                                             <MultiBinding Converter="{StaticResource EditEmpConverter }">
-                                                <Binding Path="DataContext" ElementName="LstVw"/>
-                                                <Binding Path="Height" ElementName="LstVw"/>
+                                                <Binding Path="DataContext" ElementName="mainWindow"/>
+                                                <Binding Path="SelectedItem" ElementName="LstVw"/>
                                             </MultiBinding>
                                         </Button.CommandParameter>
                                     </Button>

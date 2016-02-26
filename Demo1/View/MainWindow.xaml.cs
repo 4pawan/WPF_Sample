@@ -1,5 +1,6 @@
 ﻿using System.Windows;
 using System.Windows.Controls;
+using Demo1.ViewModel;
 
 namespace Demo1.View
 {
@@ -17,5 +18,23 @@ namespace Demo1.View
         {
 
         }
+
+
+
+
+        public EmpFormViewModel SelectedEmp
+        {
+            get { return (EmpFormViewModel)GetValue(SelectedEmpProperty); }
+            set { SetValue(SelectedEmpProperty, value); }
+        }
+
+        // Using a DependencyProperty as the backing store for SelectedEmp.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty SelectedEmpProperty =
+            DependencyProperty.Register("SelectedEmp", typeof(EmpFormViewModel), typeof(MainWindow), new PropertyMetadata(null));
+
+
+
+
+
     }
 }

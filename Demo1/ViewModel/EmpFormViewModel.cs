@@ -67,10 +67,10 @@ namespace Demo1.ViewModel
 
             NavigateToForm = new RelayCommand<dynamic>(model =>
             {
-                var _model = model;
+                if (model == null) return;
+                model[0].IsImportDataVisible = false;
+                model[0].IsSearchVisible = true;
 
-                model.IsImportDataVisible = false;
-                model.IsSearchVisible = true;
             }, model => true);
         }
 
