@@ -92,6 +92,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Common\DebugConverter.cs" />
     <Compile Include="Common\BooleanToColorConverter.cs" />
     <Compile Include="Common\CommandBase.cs" />
     <Compile Include="Common\EditEmpConverter.cs" />

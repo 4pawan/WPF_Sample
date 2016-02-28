@@ -32,8 +32,6 @@ namespace Demo1.ViewModel
             }
         }
 
-
-     
         public string Salary
         {
             get { return _salary; }

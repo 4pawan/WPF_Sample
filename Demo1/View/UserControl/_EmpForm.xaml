@@ -9,11 +9,11 @@
              x:Class="Demo1.View.UserControl.EmpForm"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
-    <UserControl.DataContext>
-        <ViewModel:EmpFormViewModel/>
-    </UserControl.DataContext>
-    <Grid>
-        <StackPanel Background="Aqua" Grid.Column="1">
+    <UserControl.Resources>
+        <common:DebugConverter x:Key="DebugConverter"/>
+    </UserControl.Resources>
+    <Grid DataContext="{Binding EmpFormViewModel, Converter={StaticResource DebugConverter}}">
+        <StackPanel Background="Aqua">
             <Label Content="Name" />
             <TextBox Name="Name" Background="Red"  Text="{Binding Name, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />
             <ContentPresenter 

@@ -88,7 +88,7 @@
                 <RowDefinition  Height="45" />
             </Grid.RowDefinitions>
             <ListView SelectedItem="{Binding SelectedEmp, ElementName=mainWindow, Mode=TwoWay}"  Name="LstVw" Visibility="{Binding IsImportDataVisible, Converter={StaticResource BooleanToVisibilityConverter}}"  Background="Yellow" SelectionMode="Single"
-			 ItemsSource="{Binding Paging.ViewList.View}" SelectionChanged="LstVw_SelectionChanged">
+			 ItemsSource="{Binding Paging.ViewList.View}">
                 <ListView.View>
                     <GridView>
                         <GridViewColumn Width="40" DisplayMemberBinding="{Binding Id}">

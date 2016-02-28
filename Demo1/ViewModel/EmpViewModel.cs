@@ -18,13 +18,23 @@ namespace Demo1.ViewModel
 {
     public class EmpViewModel : ViewModelBase
     {
-        private ObservableCollection<EmpFormViewModel> empList;
+        private ObservableCollection<EmpFormViewModel> _empList;
         public CollectionViewSource ViewList { get; set; }
         public ICommand ImportCommand { get; set; }
         public ICommand SortCommand { get; set; }
         public SortColumnViewModel SortColumn { get; set; }
 
         public ICommand NavigateToForm { get; set; }
+
+        public EmpFormViewModel EmpFormViewModel
+        {
+            get { return _empFormViewModel; }
+            set
+            {
+                _empFormViewModel = value;
+                OnPropertyChanged();
+            }
+        }
 
 
         public EmpFormViewModel SelectedItem
@@ -73,6 +83,7 @@ namespace Demo1.ViewModel
         private bool _isSearchVissible;
         private PaginationViewModel _paging;
         private EmpFormViewModel _selectedItem;
+        private EmpFormViewModel _empFormViewModel;
 
         public bool IsSearchVisible
         {
@@ -86,10 +97,10 @@ namespace Demo1.ViewModel
 
         public ObservableCollection<EmpFormViewModel> EmpList
         {
-            get { return empList; }
+            get { return _empList; }
             set
             {
-                empList = value;
+                _empList = value;
             }
         }
 
@@ -104,7 +115,7 @@ namespace Demo1.ViewModel
             ViewList.Source = EmpList;
             Paging = new PaginationViewModel
             {
-                PeopleList = empList,
+                PeopleList = _empList,
                 ViewList = ViewList
             };
             Paging.ViewList.Filter += ViewList_Filter;
@@ -127,6 +138,9 @@ namespace Demo1.ViewModel
             {
                 this.IsImportDataVisible = false;
                 this.IsSearchVisible = true;
+
+                EmpFormViewModel = vm;
+
 
                 //do something with vm here
             });
