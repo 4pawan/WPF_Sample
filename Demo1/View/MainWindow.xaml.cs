@@ -40,6 +40,7 @@ namespace Demo1.View
             if (mainWindow != null)
             {
                 //mainWindow.txtBlock.Background = Brushes.Green;
+                newval = oldval;
             }
 
         }
