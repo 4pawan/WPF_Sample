@@ -101,14 +101,21 @@
                         <GridViewColumn Header="Edit" Width="150" >
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
-                                    <Button Content="Edit" Command="{Binding NavigateToForm}">
+                                    <!--<Button Content="Edit" Command="{Binding NavigateToForm}">
                                         <Button.CommandParameter>
                                             <MultiBinding Converter="{StaticResource EditEmpConverter }">
-                                                <!--<Binding Path="DataContext" ElementName="mainWindow"/>-->
+                                                -->
+                                    <!--<Binding Path="DataContext" ElementName="mainWindow"/>-->
+                                    <!--
                                                 <Binding Path="SelectedItem"  ElementName="LstVw"/>
                                             </MultiBinding>
                                         </Button.CommandParameter>
-                                    </Button>
+                                    </Button>-->
+                                    <!--<Button Content="Edit" Command="{Binding RelativeSource={RelativeSource AncestorType=ListView}, Path=DataContext.NavigateToForm}" 
+                                            CommandParameter="{Binding}" />-->
+                                    <Button Content="Edit" Command="{Binding DataContext.NavigateToForm, ElementName=LstVw}"
+                                            CommandParameter="{Binding}" />
+
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>

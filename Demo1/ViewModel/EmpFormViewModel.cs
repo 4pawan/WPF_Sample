@@ -33,8 +33,7 @@ namespace Demo1.ViewModel
         }
 
 
-        public ICommand NavigateToForm { get; set; }
-
+     
         public string Salary
         {
             get { return _salary; }
@@ -65,15 +64,15 @@ namespace Demo1.ViewModel
             }, () => true);
 
 
-            NavigateToForm = new RelayCommand<dynamic>(model =>
-            {
-                if (model == null) return;
-                EmpViewModel empModel = model[0] as EmpViewModel;
-                if (empModel == null) return;
-                empModel.IsImportDataVisible = false;
-                empModel.IsSearchVisible = true;
+            //NavigateToForm = new RelayCommand<dynamic>(model =>
+            //{
+            //    if (model == null) return;
+            //    EmpViewModel empModel = model[0] as EmpViewModel;
+            //    if (empModel == null) return;
+            //    empModel.IsImportDataVisible = false;
+            //    empModel.IsSearchVisible = true;
 
-            }, model => true);
+            //}, model => true);
         }
 
         [StringLength(5, ErrorMessageResourceType = typeof(Resources), ErrorMessageResourceName = "EmpFormViewModel_Name_Name_cant_be_more_than_5_char")]

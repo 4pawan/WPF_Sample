@@ -24,6 +24,9 @@ namespace Demo1.ViewModel
         public ICommand SortCommand { get; set; }
         public SortColumnViewModel SortColumn { get; set; }
 
+        public ICommand NavigateToForm { get; set; }
+
+
         public EmpFormViewModel SelectedItem
         {
             get { return _selectedItem; }
@@ -118,6 +121,21 @@ namespace Demo1.ViewModel
                 IsImportDataVisible = false;
                 IsSearchVisible = true;
             }, () => true);
+
+
+            NavigateToForm = new RelayCommand<dynamic>(vm =>
+            {
+                this.IsImportDataVisible = false;
+                this.IsSearchVisible = true;
+
+                //do something with vm here
+            });
+
+
+
+
+
+
 
             SortCommand = new RelayCommand<dynamic>(item =>
             {
