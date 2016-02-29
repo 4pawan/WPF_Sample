@@ -140,10 +140,7 @@ namespace Demo1.ViewModel
                 this.IsImportDataVisible = false;
                 this.IsSearchVisible = true;
 
-                EmpFormViewModel = vm;
-
-
-                //do something with vm here
+                if (vm != null) EmpFormViewModel = vm;
             });
 
 

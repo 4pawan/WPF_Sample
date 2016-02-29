@@ -82,16 +82,16 @@
                 </RibbonGroup>
             </RibbonTab>
         </Ribbon>
-        <Grid Grid.Row="1">
+        <Grid x:Name="grid" Grid.Row="1" Background="Cyan">
             <Grid.RowDefinitions>
                 <RowDefinition  Height="*" />
                 <RowDefinition  Height="45" />
             </Grid.RowDefinitions>
-            <ListView SelectedItem="{Binding SelectedEmp, ElementName=mainWindow, Mode=TwoWay}"  Name="LstVw" Visibility="{Binding IsImportDataVisible, Converter={StaticResource BooleanToVisibilityConverter}}"  Background="Yellow" SelectionMode="Single"
+            <!--<ListView SelectedItem="{Binding SelectedEmp, ElementName=mainWindow, Mode=TwoWay}"  Name="LstVw" Visibility="{Binding IsImportDataVisible, Converter={StaticResource BooleanToVisibilityConverter}}"  Background="Yellow" SelectionMode="Single"
 			 ItemsSource="{Binding Paging.ViewList.View}">
                 <ListView.View>
                     <GridView>
-                        <GridViewColumn Width="40" DisplayMemberBinding="{Binding Id}">
+                        <GridViewColumn Width="*" DisplayMemberBinding="{Binding Id}">
                             <GridViewColumnHeader Content="Id" Command="{Binding SortCommand}" CommandParameter="Id" />
                         </GridViewColumn>
                         <GridViewColumn Width="150" DisplayMemberBinding="{Binding Name}" >
@@ -101,18 +101,20 @@
                         <GridViewColumn Header="Edit" Width="150" >
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
-                                    <!--<Button Content="Edit" Command="{Binding NavigateToForm}">
+                                    -->
+            <!--<Button Content="Edit" Command="{Binding NavigateToForm}">
                                         <Button.CommandParameter>
                                             <MultiBinding Converter="{StaticResource EditEmpConverter }">
                                                 -->
-                                    <!--<Binding Path="DataContext" ElementName="mainWindow"/>-->
-                                    <!--
+            <!--<Binding Path="DataContext" ElementName="mainWindow"/>-->
+            <!--
                                                 <Binding Path="SelectedItem"  ElementName="LstVw"/>
                                             </MultiBinding>
                                         </Button.CommandParameter>
                                     </Button>-->
-                                    <!--<Button Content="Edit" Command="{Binding RelativeSource={RelativeSource AncestorType=ListView}, Path=DataContext.NavigateToForm}" 
+            <!--<Button Content="Edit" Command="{Binding RelativeSource={RelativeSource AncestorType=ListView}, Path=DataContext.NavigateToForm}" 
                                             CommandParameter="{Binding}" />-->
+            <!--
                                     <Button Content="Edit" Command="{Binding DataContext.NavigateToForm, ElementName=LstVw}"
                                             CommandParameter="{Binding}" />
 
@@ -121,7 +123,21 @@
                         </GridViewColumn>
                     </GridView>
                 </ListView.View>
-            </ListView>
+            </ListView>-->
+            <DataGrid BorderBrush="RosyBrown" BorderThickness="1" Background="Yellow"  Height="{Binding ActualHeight, ElementName=grid, Mode=OneWay}" Name="LstVw" IsReadOnly="True" ItemsSource="{Binding Paging.ViewList.View}" Visibility="{Binding IsImportDataVisible, Converter={StaticResource BooleanToVisibilityConverter}}" AutoGenerateColumns="False" >
+                    <DataGrid.Columns>
+                    <DataGridTextColumn Header="Id" Width="*"  Binding="{Binding Id}"/>
+                    <DataGridTextColumn Header="Name" Width="*" Binding="{Binding Name}" />
+                    <DataGridTemplateColumn Header="Edit" Width="*">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button Content="Edit" Command="{Binding DataContext.NavigateToForm, ElementName=LstVw}"
+                                            CommandParameter="{Binding}" />
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                </DataGrid.Columns>
+            </DataGrid>
             <uc:PaginationElements Grid.Row="1" />
         </Grid>
 
