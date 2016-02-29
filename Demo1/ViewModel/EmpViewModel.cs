@@ -19,7 +19,7 @@ namespace Demo1.ViewModel
     public class EmpViewModel : ViewModelBase
     {
         private ObservableCollection<EmpFormViewModel> _empList;
-        public CollectionViewSource ViewList { get; set; }
+        //public CollectionViewSource ViewList { get; set; }
         public ICommand ImportCommand { get; set; }
         public ICommand SortCommand { get; set; }
         public SortColumnViewModel SortColumn { get; set; }
@@ -111,12 +111,12 @@ namespace Demo1.ViewModel
             SortColumn = new SortColumnViewModel();
             EmpList = EmpService.GetEmpList();
 
-            ViewList = new CollectionViewSource();
-            ViewList.Source = EmpList;
+            //ViewList = new CollectionViewSource();
+            //ViewList.Source = EmpList;
             Paging = new PaginationViewModel
             {
                 PeopleList = _empList,
-                ViewList = ViewList
+                //ViewList = (CollectionViewSource)EmpList
             };
             Paging.ViewList.Filter += ViewList_Filter;
 

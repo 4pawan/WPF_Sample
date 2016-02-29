@@ -77,6 +77,7 @@ namespace Demo1.ViewModel
             {
                 _empList = value;
                 OnPropertyChanged();
+                ViewList.Source = PeopleList;
                 itemcount = _empList.Count;
                 CalculateTotalPages();
             }
@@ -121,9 +122,6 @@ namespace Demo1.ViewModel
             }
         }
         #endregion
-
-
-
 
         public PaginationViewModel()
         {
