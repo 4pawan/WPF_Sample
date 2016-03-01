@@ -84,7 +84,7 @@
         </Ribbon>
         <Grid x:Name="grid" Grid.Row="1" Background="Cyan">
             <Grid.RowDefinitions>
-                <RowDefinition  Height="*" />
+                <RowDefinition Name="DataGridRow"  Height="*" />
                 <RowDefinition  Height="45" />
             </Grid.RowDefinitions>
             <!--<ListView SelectedItem="{Binding SelectedEmp, ElementName=mainWindow, Mode=TwoWay}"  Name="LstVw" Visibility="{Binding IsImportDataVisible, Converter={StaticResource BooleanToVisibilityConverter}}"  Background="Yellow" SelectionMode="Single"
@@ -124,9 +124,9 @@
                     </GridView>
                 </ListView.View>
             </ListView>-->
-            <DataGrid BorderBrush="RosyBrown" BorderThickness="1" Background="Yellow"  Height="{Binding ActualHeight, ElementName=grid, Mode=OneWay}" Name="LstVw" IsReadOnly="True" ItemsSource="{Binding Paging.ViewList.View}" Visibility="{Binding IsImportDataVisible, Converter={StaticResource BooleanToVisibilityConverter}}" AutoGenerateColumns="False" >
-                    <DataGrid.Columns>
-                    <DataGridTextColumn Header="Id" Width="*"  Binding="{Binding Id}"/>
+            <DataGrid BorderBrush="RosyBrown" BorderThickness="1" Background="Beige" Name="LstVw" IsReadOnly="True" ItemsSource="{Binding Paging.ViewList.View}" Visibility="{Binding IsImportDataVisible, Converter={StaticResource BooleanToVisibilityConverter}}" AutoGenerateColumns="False" >
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Id" Width="*"   Binding="{Binding Id}"/>
                     <DataGridTextColumn Header="Name" Width="*" Binding="{Binding Name}" />
                     <DataGridTemplateColumn Header="Edit" Width="*">
                         <DataGridTemplateColumn.CellTemplate>
@@ -136,8 +136,24 @@
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>
+                    <DataGridTemplateColumn Header="Delete" Width="*">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button Content="delete" ToolTip="delete" Opacity="0.8">
+                                    <Button.Template>
+                                        <ControlTemplate>
+                                            <Border HorizontalAlignment="Center" VerticalAlignment="Center">
+                                                <Image Width="15" Height="15" />
+                                            </Border>
+                                        </ControlTemplate>
+                                    </Button.Template>
+                                </Button>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
                 </DataGrid.Columns>
             </DataGrid>
+
             <uc:PaginationElements Grid.Row="1" />
         </Grid>
 
