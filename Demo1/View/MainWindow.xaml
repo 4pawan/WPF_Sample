@@ -82,7 +82,7 @@
                 </RibbonGroup>
             </RibbonTab>
         </Ribbon>
-        <Grid x:Name="grid" Grid.Row="1" Background="Cyan">
+        <Grid x:Name="grid" Grid.Row="1" Background="Cyan" Visibility="{Binding IsImportDataVisible, Converter={StaticResource BooleanToVisibilityConverter}}">
             <Grid.RowDefinitions>
                 <RowDefinition Name="DataGridRow"  Height="*" />
                 <RowDefinition  Height="45" />
@@ -124,7 +124,7 @@
                     </GridView>
                 </ListView.View>
             </ListView>-->
-            <DataGrid BorderBrush="RosyBrown" BorderThickness="1" Background="Beige" Name="LstVw" IsReadOnly="True" ItemsSource="{Binding Paging.ViewList.View}" Visibility="{Binding IsImportDataVisible, Converter={StaticResource BooleanToVisibilityConverter}}" AutoGenerateColumns="False" >
+            <DataGrid Grid.Row="0" BorderBrush="RosyBrown" BorderThickness="1" Background="Beige" Name="LstVw" IsReadOnly="True" ItemsSource="{Binding Paging.ViewList.View}"  AutoGenerateColumns="False" >
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Id" Width="*"   Binding="{Binding Id}"/>
                     <DataGridTextColumn Header="Name" Width="*" Binding="{Binding Name}" />
@@ -157,7 +157,7 @@
             <uc:PaginationElements Grid.Row="1" />
         </Grid>
 
-        <Grid Visibility="{Binding IsSearchVisible, Converter={StaticResource BooleanToVisibilityConverter}}" Grid.Row="1" Background="Green">
+        <Grid Visibility="{Binding IsSearchVisible, Converter={StaticResource BooleanToVisibilityConverter}}" Grid.Row="1">
             <uc:EmpForm/>
         </Grid>
     </Grid>

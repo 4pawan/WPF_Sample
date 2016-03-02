@@ -127,17 +127,18 @@
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
+            <RowDefinition Height="60"/>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="40"/>
         </Grid.RowDefinitions>
-        <TextBlock Grid.Row="0" Grid.Column="0" Text="Name" />
-        <TextBox Grid.Row="0" Grid.Column="1" x:Name="Name" Text="{Binding Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+        <TextBlock Grid.Row="1" Grid.Column="0" Text="Name" />
+        <TextBox Grid.Row="1" Grid.Column="1" x:Name="Name" Text="{Binding Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
         </TextBox>
-        <TextBlock Grid.Row="1" Grid.Column="0" Text="Age" />
+        <TextBlock Grid.Row="2" Grid.Column="0" Text="Age" />
 
-        <TextBox Grid.Row="1" Grid.Column="1" x:Name="Age">
+        <TextBox Grid.Row="2" Grid.Column="1" x:Name="Age">
             <Binding Path="Age" UpdateSourceTrigger="PropertyChanged" Mode="TwoWay">
                 <Binding.ValidationRules>
                     <common:StringToIntValidationRule ValidationStep="RawProposedValue"/>
@@ -145,8 +146,8 @@
 
             </Binding>
         </TextBox>
-        <TextBlock Grid.Row="2" Grid.Column="0" Text="Salary" />
-        <TextBox Grid.Row="2" Grid.Column="1"
+        <TextBlock Grid.Row="3" Grid.Column="0" Text="Salary" />
+        <TextBox Grid.Row="3" Grid.Column="1"
         		x:Name="Salary" 
         		HorizontalAlignment="Left"
         		Text="{Binding Salary, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" 
@@ -167,7 +168,7 @@
             </ContentPresenter.ContentTemplate>
         </ContentPresenter>-->
 
-        <Button  Grid.Row="3" Grid.Column="1" Content="Save" Width="50px" Height="50px" Command="{Binding SaveCommand}" />
+        <Button  Grid.Row="4" Grid.Column="1" Content="Save" Width="50px" Height="50px" Command="{Binding SaveCommand}" />
 
     </Grid>
 </UserControl>
