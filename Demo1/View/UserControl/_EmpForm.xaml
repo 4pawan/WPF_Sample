@@ -121,6 +121,13 @@
                     </Trigger>
                 </Style.Triggers>
             </Style>
+            <Style TargetType="ComboBox">
+                <Setter Property="HorizontalAlignment" Value="Left" />
+                <Setter Property="VerticalAlignment" Value="Top" />
+                <Setter Property="Width" Value="150" />
+                <Setter Property="Height" Value="30" />
+                <Setter Property="Validation.ErrorTemplate" Value="{DynamicResource ErrorToolTipTemplate_1}" />
+            </Style>
         </Grid.Resources>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="140"/>
@@ -134,8 +141,7 @@
             <RowDefinition Height="40"/>
         </Grid.RowDefinitions>
         <TextBlock Grid.Row="1" Grid.Column="0" Text="Name" />
-        <TextBox Grid.Row="1" Grid.Column="1" x:Name="Name" Text="{Binding Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
-        </TextBox>
+        <TextBox Grid.Row="1" Grid.Column="1" x:Name="Name" Text="{Binding Name, Mode=TwoWay, ValidatesOnDataErrors=True,  UpdateSourceTrigger=PropertyChanged}"/>
         <TextBlock Grid.Row="2" Grid.Column="0" Text="Age" />
 
         <TextBox Grid.Row="2" Grid.Column="1" x:Name="Age">
@@ -152,7 +158,7 @@
         		HorizontalAlignment="Left"
         		Text="{Binding Salary, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" 
         		VerticalAlignment="Top" 
-        		Width="100" 
+        		
       />
         <!--<ContentPresenter 
         		Content="{Binding (Validation.Errors).CurrentItem, ElementName=Salary}"
@@ -168,7 +174,23 @@
             </ContentPresenter.ContentTemplate>
         </ContentPresenter>-->
 
-        <Button  Grid.Row="4" Grid.Column="1" Content="Save" Width="50px" Height="50px" Command="{Binding SaveCommand}" />
+        <Button  Grid.Row="4" Grid.Column="1" Content="Save" Command="{Binding SaveCommand}" >
+            <Button.Style>
+                <Style TargetType="Button">
+                    <Setter Property="IsEnabled" Value="False"/>
+                    <Style.Triggers>
+                        <MultiDataTrigger>
+                            <MultiDataTrigger.Conditions>
+                                <Condition Binding="{Binding Path=(Validation.HasError), ElementName=Name}" Value="False"/>
+                                <Condition Binding="{Binding Path=(Validation.HasError), ElementName=Age}" Value="False"/>
+                                <Condition Binding="{Binding Path=(Validation.HasError), ElementName=Salary}" Value="False"/>
+                            </MultiDataTrigger.Conditions>
+                            <Setter Property="IsEnabled" Value="True"/>
+                        </MultiDataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </Button.Style>
+        </Button>
 
     </Grid>
 </UserControl>

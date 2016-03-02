@@ -5,6 +5,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
 using Demo1.Common;
 using Demo1.Model;
@@ -19,7 +20,7 @@ namespace Demo1.ViewModel
         private string _name;
         private int _age;
         private string _salary;
-
+       
         private int _id;
 
         public int Id
@@ -58,19 +59,9 @@ namespace Demo1.ViewModel
                     Age = this.Age
                 };
                 Service.EmpService.AddEmp(model);
+                MessageBox.Show("Save Executed", "Message Save", MessageBoxButton.OK, MessageBoxImage.Information);
 
             }, () => true);
-
-
-            //NavigateToForm = new RelayCommand<dynamic>(model =>
-            //{
-            //    if (model == null) return;
-            //    EmpViewModel empModel = model[0] as EmpViewModel;
-            //    if (empModel == null) return;
-            //    empModel.IsImportDataVisible = false;
-            //    empModel.IsSearchVisible = true;
-
-            //}, model => true);
         }
 
         [StringLength(5, ErrorMessageResourceType = typeof(Resources), ErrorMessageResourceName = "EmpFormViewModel_Name_Name_cant_be_more_than_5_char")]

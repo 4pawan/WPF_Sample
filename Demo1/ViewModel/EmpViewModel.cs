@@ -131,7 +131,7 @@ namespace Demo1.ViewModel
             {
                 IsImportDataVisible = false;
                 IsSearchVisible = true;
-                EmpFormViewModel = null;
+                EmpFormViewModel = new EmpFormViewModel();
             }, () => true);
 
 
