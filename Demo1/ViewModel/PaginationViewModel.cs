@@ -27,6 +27,7 @@ namespace Demo1.ViewModel
         private int itemcount;
         private int _currentPageIndex;
 
+      
 
 
 
@@ -109,6 +110,12 @@ namespace Demo1.ViewModel
             CurrentPageIndex = TotalPages - 1;
             ViewList.View.Refresh();
         }
+
+        public void FilterNameByName()
+        {
+            ViewList.View.Refresh();
+        }
+
 
         private void CalculateTotalPages()
         {

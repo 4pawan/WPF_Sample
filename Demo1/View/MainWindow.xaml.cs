@@ -1,5 +1,8 @@
-﻿using System.Windows;
+﻿using System;
+using System.ComponentModel;
+using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Data;
 using Demo1.ViewModel;
 
 namespace Demo1.View
@@ -14,9 +17,23 @@ namespace Demo1.View
             InitializeComponent();
         }
 
-        private void LstVw_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void txtName_TextChanged(object sender, TextChangedEventArgs e)
         {
-
+            TextBox t = (TextBox)sender;
+            string filter = t.Text;
+            ICollectionView cv = CollectionViewSource.GetDefaultView(LstVw.ItemsSource);
+            if (filter == "")
+                cv.Filter = null;
+            else
+            {
+                cv.Filter = o =>
+                {
+                    EmpFormViewModel p = o as EmpFormViewModel;
+                    if (t.Name == "Name")
+                        return (p.Name == (filter));
+                    return (p.Name.ToUpper().StartsWith(filter.ToUpper()));
+                };
+            }
         }
 
         public EmpFormViewModel SelectedEmp

@@ -155,6 +155,7 @@
             </DataGrid>
 
             <uc:PaginationElements Grid.Row="1" />
+            <TextBox x:Name="textBox" Text="{Binding SearchText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap"  VerticalAlignment="Top" Width="120" Margin="131,11,0,0" Grid.Row="1"/>
         </Grid>
 
         <Grid Visibility="{Binding IsSearchVisible, Converter={StaticResource BooleanToVisibilityConverter}}" Grid.Row="1">

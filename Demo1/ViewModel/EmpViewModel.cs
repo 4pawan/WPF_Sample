@@ -36,6 +36,18 @@ namespace Demo1.ViewModel
             }
         }
 
+        private string _searchText;
+        public string SearchText
+        {
+            get { return _searchText; }
+            set
+            {
+                _searchText = value;
+                OnPropertyChanged();
+                Paging.ViewList.View.Refresh();
+            }
+        }
+
 
         public EmpFormViewModel SelectedItem
         {
@@ -169,6 +181,9 @@ namespace Demo1.ViewModel
 
                 if (string.Equals(item, "Id", StringComparison.InvariantCultureIgnoreCase))
                 {
+
+                    // Paging.ViewList.View.Filter(propfull=) implement filter based on textBox 
+
                     if (SortColumn.NameSortOrder == SortDir.Descending)
                     {
                         Paging.ViewList.SortDescriptions.Clear();
