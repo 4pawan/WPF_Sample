@@ -120,7 +120,7 @@ namespace Demo1.ViewModel
 
         public EmpViewModel()
         {
-            SortColumn = new SortColumnViewModel();
+            //SortColumn = new SortColumnViewModel();
             EmpList = EmpService.GetEmpList();
 
             //ViewList = new CollectionViewSource();
@@ -209,6 +209,17 @@ namespace Demo1.ViewModel
 
         private void ViewList_Filter(object sender, FilterEventArgs e)
         {
+            //var obj = e.Item as Model;
+            //if (obj != null)
+            //{
+            //    if (obj.Name.Contains("Max"))
+            //        e.Accepted = true;
+            //    else
+            //        e.Accepted = false;
+            //}
+            //var ed = new Enumerable<string>();
+
+
             int index = ((EmpFormViewModel)e.Item).Id - 1;
             if (index >= Paging.itemPerPage * Paging.CurrentPageIndex && index < Paging.itemPerPage * (Paging.CurrentPageIndex + 1))
             {
