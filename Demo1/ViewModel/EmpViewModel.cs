@@ -21,7 +21,7 @@ namespace Demo1.ViewModel
         private ObservableCollection<EmpFormViewModel> _empList;
         //public CollectionViewSource ViewList { get; set; }
         public ICommand ImportCommand { get; set; }
-        public ICommand SortCommand { get; set; }
+        public ICommand SortCommand1 { get; set; }
         public SortColumnViewModel SortColumn { get; set; }
 
         public ICommand NavigateToForm { get; set; }
@@ -161,7 +161,7 @@ namespace Demo1.ViewModel
 
 
 
-            SortCommand = new RelayCommand<dynamic>(item =>
+            SortCommand1 = new RelayCommand<dynamic>(item =>
             {
                 if (string.Equals(item, "Name", StringComparison.InvariantCultureIgnoreCase))
                 {

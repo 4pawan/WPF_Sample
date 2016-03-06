@@ -25,13 +25,13 @@
         </ResourceDictionary>-->
 
 
-        <CollectionViewSource x:Key="lst" 
+        <!--<CollectionViewSource x:Key="lst" 
                       Source="{Binding ElementName=lstLevel, 
                                        Path=SelectedItem.Players}">
             <CollectionViewSource.SortDescriptions>
                 <componentModel:SortDescription PropertyName="Name" />
             </CollectionViewSource.SortDescriptions>
-        </CollectionViewSource>
+        </CollectionViewSource>-->
 
         <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
         <Common:EditEmpConverter x:Key="EditEmpConverter"/>
