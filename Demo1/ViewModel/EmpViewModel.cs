@@ -155,12 +155,6 @@ namespace Demo1.ViewModel
                 if (vm != null) EmpFormViewModel = vm;
             });
 
-
-
-
-
-
-
             SortCommand1 = new RelayCommand<dynamic>(item =>
             {
                 if (string.Equals(item, "Name", StringComparison.InvariantCultureIgnoreCase))
@@ -200,9 +194,6 @@ namespace Demo1.ViewModel
 
             }, item => true);
 
-
-
-
             IsImportDataVisible = true;
         }
 
@@ -218,6 +209,8 @@ namespace Demo1.ViewModel
             //        e.Accepted = false;
             //}
             //var ed = new Enumerable<string>();
+
+
 
 
             int index = ((EmpFormViewModel)e.Item).Id - 1;
