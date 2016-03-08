@@ -136,13 +136,13 @@
                     </i:Interaction.Triggers>
                 </TextBox>
                 <TextBlock Text="SearchByName" Name="SearchByName" Height="23"/>
-                <TextBox Width="123" Height="23" Text="{Binding Paging.SearchByColumnCommand, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}">
+                <TextBox Width="123" Height="23" Text="{Binding Paging.SearchByName, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}">
                     <!--<TextBox.InputBindings>
                         <KeyBinding Command="{Binding Path=Paging.SearchByNameCommand}" Key="F3" />
                     </TextBox.InputBindings>-->
                     <i:Interaction.Triggers>
                         <i:EventTrigger EventName="KeyUp">
-                            <i:InvokeCommandAction Command="{Binding Paging.SearchByNameCommand}"/>
+                            <i:InvokeCommandAction Command="{Binding Paging.SearchByColumnCommand}"/>
                         </i:EventTrigger>
                     </i:Interaction.Triggers>
                 </TextBox>
