@@ -203,18 +203,11 @@ namespace Demo1.ViewModel
         {
             ICondition cond = null;
 
-            string srchText = "AAA1";
+            string srchText = "";//"AAA1";
 
-            if (!string.IsNullOrEmpty(srchText))
-            {
-                cond = new SearchCondition(Paging, (EmpFormViewModel)e.Item);
-                e.Accepted = cond.Evaluate();
-            }
-            else
-            {
-                cond = new PagingCondition(Paging, (EmpFormViewModel)e.Item);
-                e.Accepted = cond.Evaluate();
-            }
+            cond = !string.IsNullOrEmpty(srchText) ? (ICondition) new SearchCondition(Paging, (EmpFormViewModel) e.Item)
+                                                   : new PagingCondition(Paging, (EmpFormViewModel) e.Item);
+            e.Accepted = cond.Evaluate();
         }
     }
 }
