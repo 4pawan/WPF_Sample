@@ -9,16 +9,12 @@ namespace Demo1.Repository
 {
     public class SearchCondition : ICondition
     {
-        private PaginationViewModel paging;
-        private EmpFormViewModel model;
         private ICondition srchById;
         private ICondition srchByName;
         private ICondition pagingCondition;
 
         public SearchCondition(PaginationViewModel paging, EmpFormViewModel model)
         {
-            this.paging = paging;
-            this.model = model;
             srchById = new SearchById(paging, model);
             srchByName = new SearchByName(paging, model);
             pagingCondition = new PagingCondition(paging, model);

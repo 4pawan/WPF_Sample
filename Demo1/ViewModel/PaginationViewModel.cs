@@ -57,7 +57,7 @@ namespace Demo1.ViewModel
             {
                 _currentPageIndex = value;
                 OnPropertyChanged();
-                OnPropertyChanged("CurrentPage");
+                OnPropertyChanged(nameof(CurrentPage));
             }
         }
         public int CurrentPage
@@ -72,7 +72,7 @@ namespace Demo1.ViewModel
             private set
             {
                 _totalPages = value;
-                OnPropertyChanged("TotalPage");
+                OnPropertyChanged();
             }
         }
 

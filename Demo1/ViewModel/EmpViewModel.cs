@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -207,7 +208,16 @@ namespace Demo1.ViewModel
 
             cond = isFilterRequired ? (ICondition)new SearchCondition(Paging, (EmpFormViewModel)e.Item)
                                                    : new PagingCondition(Paging, (EmpFormViewModel)e.Item);
-            e.Accepted = cond.Evaluate();
+
+            if (cond.Evaluate())
+            {
+                Debug.WriteLine("----->" + ((EmpFormViewModel)e.Item).Id);
+                e.Accepted = true;
+            }
+            else
+            {
+                e.Accepted = false;
+            }
         }
     }
 }

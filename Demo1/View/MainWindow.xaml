@@ -148,7 +148,7 @@
                 </TextBox>
 
             </StackPanel>
-            <DataGrid Grid.Row="1" BorderBrush="RosyBrown" BorderThickness="1" Background="Beige" Name="LstVw" IsReadOnly="True" ItemsSource="{Binding Paging.ViewList.View}"  AutoGenerateColumns="False" >
+            <DataGrid Grid.Row="1" CanUserSortColumns="True" BorderBrush="RosyBrown" BorderThickness="1" Background="Beige" Name="LstVw" IsReadOnly="True" ItemsSource="{Binding Paging.ViewList.View}"  AutoGenerateColumns="False" >
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Id" Width="*"   Binding="{Binding Id}"/>
                     <DataGridTextColumn Header="Name" Width="*" Binding="{Binding Name}" />
