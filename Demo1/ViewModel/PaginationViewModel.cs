@@ -20,7 +20,7 @@ namespace Demo1.ViewModel
         public ICommand FirstCommand { get; set; }
         public ICommand LastCommand { get; set; }
 
-        public ICommand SearchByNameCommand { get; set; }
+        public ICommand SearchByColumnCommand { get; set; }
 
         #endregion
 
@@ -160,7 +160,7 @@ namespace Demo1.ViewModel
             FirstCommand = new FirstPageCommand(this);
             LastCommand = new LastPageCommand(this);
 
-            SearchByNameCommand = new RelayCommand(() =>
+            SearchByColumnCommand = new RelayCommand(() =>
             {
                 ViewList.View.Refresh();
 
