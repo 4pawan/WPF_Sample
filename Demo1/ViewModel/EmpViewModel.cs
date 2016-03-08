@@ -203,10 +203,10 @@ namespace Demo1.ViewModel
         {
             ICondition cond = null;
 
-            string srchText = "";//"AAA1";
+            bool isFilterRequired = !string.IsNullOrEmpty(Paging.SearchById) || !string.IsNullOrEmpty(Paging.SearchByName);
 
-            cond = !string.IsNullOrEmpty(srchText) ? (ICondition) new SearchCondition(Paging, (EmpFormViewModel) e.Item)
-                                                   : new PagingCondition(Paging, (EmpFormViewModel) e.Item);
+            cond = isFilterRequired ? (ICondition)new SearchCondition(Paging, (EmpFormViewModel)e.Item)
+                                                   : new PagingCondition(Paging, (EmpFormViewModel)e.Item);
             e.Accepted = cond.Evaluate();
         }
     }

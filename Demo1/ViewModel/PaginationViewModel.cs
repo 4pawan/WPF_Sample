@@ -20,6 +20,8 @@ namespace Demo1.ViewModel
         public ICommand FirstCommand { get; set; }
         public ICommand LastCommand { get; set; }
 
+        public ICommand SearchByNameCommand { get; set; }
+
         #endregion
 
         #region Fields And Properties
@@ -27,8 +29,25 @@ namespace Demo1.ViewModel
         private int itemcount;
         private int _currentPageIndex;
 
-      
+        public string SearchByName
+        {
+            get { return _searchByName; }
+            set
+            {
+                _searchByName = value;
+                OnPropertyChanged();
+            }
+        }
 
+        public string SearchById
+        {
+            get { return _searchById; }
+            set
+            {
+                _searchById = value;
+                OnPropertyChanged();
+            }
+        }
 
 
         public int CurrentPageIndex
@@ -69,6 +88,8 @@ namespace Demo1.ViewModel
 
         private ObservableCollection<EmpFormViewModel> _empList;
         private CollectionViewSource _viewList = new CollectionViewSource();
+        private string _searchByName;
+        private string _searchById;
 
 
         public ObservableCollection<EmpFormViewModel> PeopleList
@@ -138,6 +159,12 @@ namespace Demo1.ViewModel
             PreviousCommand = new PreviousPageCommand(this);
             FirstCommand = new FirstPageCommand(this);
             LastCommand = new LastPageCommand(this);
+
+            SearchByNameCommand = new RelayCommand(() =>
+            {
+                ViewList.View.Refresh();
+
+            }, () => true);
         }
     }
 }

@@ -21,10 +21,9 @@ namespace Demo1.Repository
 
         public bool Evaluate()
         {
-            string keyToSrch = "AAA1";
             int index = model.Id - 1;
-
-            if (index >= paging.itemPerPage * paging.CurrentPageIndex && index < paging.itemPerPage * (paging.CurrentPageIndex + 1) && model.Name.Contains(keyToSrch))
+             
+            if (index >= paging.itemPerPage * paging.CurrentPageIndex && index < paging.itemPerPage * (paging.CurrentPageIndex + 1) && model.Name.Contains(paging.SearchByName))
             {
                 return true;
             }

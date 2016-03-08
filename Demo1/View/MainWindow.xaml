@@ -8,6 +8,7 @@
         xmlns:uc="clr-namespace:Demo1.View.UserControl"
         xmlns:Common="clr-namespace:Demo1.Common"
         xmlns:componentModel="clr-namespace:System.ComponentModel;assembly=WindowsBase"
+        xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
         x:Class="Demo1.View.MainWindow"
         mc:Ignorable="d"
         Height="350" 
@@ -84,7 +85,8 @@
         </Ribbon>
         <Grid x:Name="grid" Grid.Row="1" Background="Cyan" Visibility="{Binding IsImportDataVisible, Converter={StaticResource BooleanToVisibilityConverter}}">
             <Grid.RowDefinitions>
-                <RowDefinition Name="DataGridRow"  Height="*" />
+                <RowDefinition Height="45" />
+                <RowDefinition Height="*" />
                 <RowDefinition  Height="45" />
             </Grid.RowDefinitions>
             <!--<ListView SelectedItem="{Binding SelectedEmp, ElementName=mainWindow, Mode=TwoWay}"  Name="LstVw" Visibility="{Binding IsImportDataVisible, Converter={StaticResource BooleanToVisibilityConverter}}"  Background="Yellow" SelectionMode="Single"
@@ -124,7 +126,23 @@
                     </GridView>
                 </ListView.View>
             </ListView>-->
-            <DataGrid Grid.Row="0" BorderBrush="RosyBrown" BorderThickness="1" Background="Beige" Name="LstVw" IsReadOnly="True" ItemsSource="{Binding Paging.ViewList.View}"  AutoGenerateColumns="False" >
+            <StackPanel Grid.Row="0" Orientation="Horizontal">
+                <TextBlock Text="SearchById" Name="SearchById" Height="23" />
+                <TextBox Width="123" Height="23" Text="{Binding Paging.SearchById, Mode=TwoWay}" />
+                <TextBlock Text="SearchByName" Name="SearchByName" Height="23"/>
+                <TextBox Width="123" Height="23" Text="{Binding Paging.SearchByName, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}">
+                    <!--<TextBox.InputBindings>
+                        <KeyBinding Command="{Binding Path=Paging.SearchByNameCommand}" Key="F3" />
+                    </TextBox.InputBindings>-->
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="KeyUp">
+                            <i:InvokeCommandAction Command="{Binding Paging.SearchByNameCommand}"/>
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                </TextBox>
+                
+            </StackPanel>
+            <DataGrid Grid.Row="1" BorderBrush="RosyBrown" BorderThickness="1" Background="Beige" Name="LstVw" IsReadOnly="True" ItemsSource="{Binding Paging.ViewList.View}"  AutoGenerateColumns="False" >
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Id" Width="*"   Binding="{Binding Id}"/>
                     <DataGridTextColumn Header="Name" Width="*" Binding="{Binding Name}" />
@@ -136,7 +154,7 @@
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>
-                    <DataGridTemplateColumn Header="Delete" Width="*">
+                    <!--<DataGridTemplateColumn Header="Delete" Width="*">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
                                 <Button Content="delete" ToolTip="delete" Opacity="0.8">
@@ -150,12 +168,10 @@
                                 </Button>
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
-                    </DataGridTemplateColumn>
+                    </DataGridTemplateColumn>-->
                 </DataGrid.Columns>
             </DataGrid>
-
-            <uc:PaginationElements Grid.Row="1" />
-            <TextBox x:Name="textBox" Text="{Binding SearchText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap"  VerticalAlignment="Top" Width="120" Margin="131,11,0,0" Grid.Row="1"/>
+            <uc:PaginationElements Grid.Row="2" />
         </Grid>
 
         <Grid Visibility="{Binding IsSearchVisible, Converter={StaticResource BooleanToVisibilityConverter}}" Grid.Row="1">
