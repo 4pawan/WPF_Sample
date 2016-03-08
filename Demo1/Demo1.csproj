@@ -103,6 +103,9 @@
     <Compile Include="Common\StringToIntValidationRule.cs" />
     <Compile Include="Common\ValidationBase.cs" />
     <Compile Include="Enum\SortDir.cs" />
+    <Compile Include="Repository\ICondition.cs" />
+    <Compile Include="Repository\SearchCondition.cs" />
+    <Compile Include="Repository\PagingCondition.cs" />
     <Compile Include="Service\EmpService.cs" />
     <Compile Include="ViewModel\EmpFormViewModel.cs" />
     <Compile Include="ViewModel\PaginationViewModel.cs" />

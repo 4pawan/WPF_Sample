@@ -11,6 +11,7 @@ using System.Windows.Input;
 using Demo1.Common;
 using Demo1.Enum;
 using Demo1.Model;
+using Demo1.Repository;
 using Demo1.Service;
 using GalaSoft.MvvmLight.Command;
 
@@ -200,29 +201,20 @@ namespace Demo1.ViewModel
 
         private void ViewList_Filter(object sender, FilterEventArgs e)
         {
-            //var obj = e.Item as Model;
-            //if (obj != null)
-            //{
-            //    if (obj.Name.Contains("Max"))
-            //        e.Accepted = true;
-            //    else
-            //        e.Accepted = false;
-            //}
-            //var ed = new Enumerable<string>();
+            ICondition cond = null;
 
+            string srchText = "AAA1";
 
-
-
-            int index = ((EmpFormViewModel)e.Item).Id - 1;
-            if (index >= Paging.itemPerPage * Paging.CurrentPageIndex && index < Paging.itemPerPage * (Paging.CurrentPageIndex + 1))
+            if (!string.IsNullOrEmpty(srchText))
             {
-                e.Accepted = true;
+                cond = new SearchCondition(Paging, (EmpFormViewModel)e.Item);
+                e.Accepted = cond.Evaluate();
             }
             else
             {
-                e.Accepted = false;
+                cond = new PagingCondition(Paging, (EmpFormViewModel)e.Item);
+                e.Accepted = cond.Evaluate();
             }
-
         }
     }
 }
