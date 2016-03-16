@@ -119,18 +119,13 @@ namespace Demo1.ViewModel
         }
 
 
-
         public EmpViewModel()
         {
-            //SortColumn = new SortColumnViewModel();
             EmpList = EmpService.GetEmpList();
-
-            //ViewList = new CollectionViewSource();
-            //ViewList.Source = EmpList;
+             
             Paging = new PaginationViewModel
             {
                 PeopleList = _empList,
-                //ViewList = (CollectionViewSource)EmpList
             };
             Paging.ViewList.Filter += ViewList_Filter;
 
@@ -198,11 +193,8 @@ namespace Demo1.ViewModel
 
             Paging.SearchByColumnCommand = new RelayCommand(() =>
             {
-                Paging.PeopleList = new ObservableCollection<EmpFormViewModel>(Paging.PeopleList.Where(p => new SearchCondition(Paging, p).Evaluate()));
+                Paging.PeopleList = new ObservableCollection<EmpFormViewModel>(EmpList.Where(p => new SearchCondition(Paging, p).Evaluate()));
             }, () => true);
-
-
-
 
             IsImportDataVisible = true;
         }
