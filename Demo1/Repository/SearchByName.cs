@@ -21,7 +21,7 @@ namespace Demo1.Repository
 
         public bool Evaluate()
         {
-            if (string.IsNullOrEmpty(paging.SearchByName) || model.Name.Contains(paging.SearchByName))
+            if (string.IsNullOrEmpty(paging.SearchByName) || model.Name.ToLower().Contains(paging.SearchByName.ToLower()))
             {
                 return true;
             }
