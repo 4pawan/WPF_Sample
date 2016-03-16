@@ -23,7 +23,7 @@ namespace Demo1.Repository
 
         public bool Evaluate()
         {
-            if (pagingCondition.Evaluate() && srchById.Evaluate() && srchByName.Evaluate())
+            if (srchById.Evaluate() && srchByName.Evaluate())
             {
                 return true;
             }

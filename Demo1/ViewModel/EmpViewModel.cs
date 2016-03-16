@@ -196,28 +196,22 @@ namespace Demo1.ViewModel
 
             }, item => true);
 
+            Paging.SearchByColumnCommand = new RelayCommand(() =>
+            {
+                Paging.PeopleList = new ObservableCollection<EmpFormViewModel>(Paging.PeopleList.Where(p => new SearchCondition(Paging, p).Evaluate()));
+            }, () => true);
+
+
+
+
             IsImportDataVisible = true;
         }
 
 
         private void ViewList_Filter(object sender, FilterEventArgs e)
         {
-            ICondition cond = null;
-
-            bool isFilterRequired = !string.IsNullOrEmpty(Paging.SearchById) || !string.IsNullOrEmpty(Paging.SearchByName);
-
-            cond = isFilterRequired ? (ICondition)new SearchCondition(Paging, (EmpFormViewModel)e.Item)
-                                                   : new PagingCondition(Paging, (EmpFormViewModel)e.Item);
-
-            if (cond.Evaluate())
-            {
-                Debug.WriteLine("----->" + ((EmpFormViewModel)e.Item).Id);
-                e.Accepted = true;
-            }
-            else
-            {
-                e.Accepted = false;
-            }
+            Debug.WriteLine("------>EVM :" + ((EmpFormViewModel)e.Item).Id);
+            e.Accepted = new PagingCondition(Paging, (EmpFormViewModel)e.Item).Evaluate();
         }
     }
 }

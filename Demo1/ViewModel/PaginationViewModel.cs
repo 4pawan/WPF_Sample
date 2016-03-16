@@ -160,14 +160,6 @@ namespace Demo1.ViewModel
             PreviousCommand = new PreviousPageCommand(this);
             FirstCommand = new FirstPageCommand(this);
             LastCommand = new LastPageCommand(this);
-
-            SearchByColumnCommand = new RelayCommand(() =>
-            {
-                ViewList.View.Refresh();
-                //Debug.WriteLine("------>TotalPages :" + TotalPages);
-                //var asad = ViewList.View.SourceCollection;
-
-            }, () => true);
         }
     }
 }

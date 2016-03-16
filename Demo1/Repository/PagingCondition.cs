@@ -21,16 +21,8 @@ namespace Demo1.Repository
 
         public bool Evaluate()
         {
-            int index = model.Id - 1;
-            if (index >= paging.itemPerPage * paging.CurrentPageIndex && index < paging.itemPerPage * (paging.CurrentPageIndex + 1))
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-
+            int index = paging.PeopleList.IndexOf(model);
+            return index >= paging.itemPerPage * paging.CurrentPageIndex && index < paging.itemPerPage * (paging.CurrentPageIndex + 1);
         }
     }
 }
